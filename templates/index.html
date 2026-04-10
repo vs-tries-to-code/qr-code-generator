@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html>
-<body>
-    <h1>QR Code Generator</h1>
-    <form action="/generate" method="post">
-        <input type="text" name="data" placeholder="Enter URL to generate QR code"/>
-        <button type="submit">Generate QR</button>
-    </form>
-</body>
-</html>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>QR Generator</title>
+        <link href="style.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1>QR Code Generator</h1>
+        <form action="/generate" method="post">
+            <input type="text" name="data" placeholder="Enter URL to generate QR code"/>
+            <input type="color" name="fill-color" value="#000000" placeholder="Enter hex code of fill colour"/>
+            <input type="color" name="back-color" value="#ffffff" placeholder="Enter hex code of back colour"/>
+            <button type="submit">Generate QR</button>
+        </form>
+
+        {% if show_qr %}
+        <h2>Your QR Code</h2>
+        <img src="{{ url_for('static', filename='your-qr.png') }}"/>
+        <a href="{{ url_for('static', filename='your-qr.png') }}" download>
+            <button>DOWNLOAD QR</button>
+        </a>
+        {% endif %}
+    </body>
+    </html>
