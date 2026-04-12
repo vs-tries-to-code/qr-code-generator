@@ -37,13 +37,13 @@
             <button type="submit" class="btn">Generate QR code</button>
         </form>
 
-        {% if show_qr %}
+        {% if qr_file %}
         <div class="qr-section">
             <span class="qr-label">Your QR code</span>
             <div class="qr-box">
-                <img src="{{ url_for('static', filename='your-qr.png') }}" alt="Generated QR Code" />
+                <img src="{{ url_for('static', filename=qr_file) }}" alt="Generated QR Code" />
             </div>
-            <a href="{{ url_for('static', filename='your-qr.png') }}" download>
+            <a href="{{ url_for('static', filename=qr_file) }}" download>
                 <button class="download-btn">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>

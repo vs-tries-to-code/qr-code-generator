@@ -1,11 +1,12 @@
 from flask import Flask, request, render_template
 import qrcode
+import uuid 
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html", show_qr=False)
+    return render_template("index.html", qr_file=None)
 
 @app.route("/generate", methods=["POST"])
 def generate():
@@ -21,7 +22,9 @@ def generate():
 
     #making image of the qr with the custom colour
     img = qr.make_image(fill_color=fill_color, back_color=back_color)
-    img.save("static/your-qr.png")
-    return render_template("index.html", show_qr=True)
+    filename = f"{uuid.uuid4()}.png"
+    img.save(f"static/{filename}")
+    return render_template("index.html", qr_file=filename)
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run()
