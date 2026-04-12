@@ -1,27 +1,69 @@
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>QR Generator</title>
-        <link href="style.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <h1>QR Code Generator</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Generator</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="card">
+
+        <h1>QR Generator</h1>
+        <p class="subtitle">Turn URLs to QR Codes, for free!</p>
+
         <form action="/generate" method="post">
-            <input type="text" name="data" placeholder="Enter URL to generate QR code"/>
-            <input type="color" name="fill-color" value="#000000" placeholder="Enter hex code of fill colour"/>
-            <input type="color" name="back-color" value="#ffffff" placeholder="Enter hex code of back colour"/>
-            <button type="submit">Generate QR</button>
+            <label for="data">URL or text</label>
+            <input type="text" id="data" name="data" placeholder="https://example.com" required />
+
+            <div class="color-row">
+                <div class="color-group">
+                    <label for="fill-color">Foreground</label>
+                    <div class="color-field">
+                        <input type="color" id="fill-color" name="fill-color" value="#000000"/>
+                        <span class="color-hex" id="fill-hex">#000000</span>
+                    </div>
+                </div>
+                <div class="color-group">
+                    <label for="back-color">Background</label>
+                    <div class="color-field">
+                        <input type="color" id="back-color" name="back-color" value="#ffffff" />
+                        <span class="color-hex" id="back-hex">#ffffff</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Generate QR code</button>
         </form>
 
         {% if show_qr %}
-        <h2>Your QR Code</h2>
-        <img src="{{ url_for('static', filename='your-qr.png') }}"/>
-        <a href="{{ url_for('static', filename='your-qr.png') }}" download>
-            <button>DOWNLOAD QR</button>
-        </a>
+        <div class="qr-section">
+            <span class="qr-label">Your QR code</span>
+            <div class="qr-box">
+                <img src="{{ url_for('static', filename='your-qr.png') }}" alt="Generated QR Code" />
+            </div>
+            <a href="{{ url_for('static', filename='your-qr.png') }}" download>
+                <button class="download-btn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download QR
+                </button>
+            </a>
+        </div>
         {% endif %}
-    </body>
-    </html>
+    </div>
+
+    <script>
+        const fillInput = document.getElementById('fill-color');
+        const backInput = document.getElementById('back-color');
+        const fillHex = document.getElementById('fill-hex');
+        const backHex = document.getElementById('back-hex');
+        fillInput.addEventListener('input', () => fillHex.textContent = fillInput.value);
+        backInput.addEventListener('input', () => backHex.textContent = backInput.value);
+    </script>
+</body>
+</html>

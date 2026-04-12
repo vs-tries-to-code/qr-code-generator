@@ -1,5 +1,225 @@
-h1{
-    font-family: "Syne", sans-serif;
-    font-weight: 800;
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    font-family: 'Syne', sans-serif;
+    background-color: #111113;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+/* ── Card ── */
+.card {
+    background: linear-gradient(#242428, #717177, #242428);
+    border: 0.5px solid #2e2e38;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: #b6b6bf;
+}
+
+/* ── Heading ── */
+h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0eeff;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #8a8aab;
+    margin-bottom: 2rem;
+}
+
+/* ── Form labels ── */
+label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #b6b6bf;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 6px;
+    margin-top: 1.2rem;
+}
+
+/* ── Text input ── */
+input[type="text"] {
+    width: 100%;
+    background: #111113;
+    border: 0.5px solid #2e2e38;
+    border-radius: 10px;
+    color: #e8e4ff;
+    font-size: 14px;
+    font-family: 'Syne', sans-serif;
+    padding: 11px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]::placeholder {
+    color: #bbbbcd;
+}
+
+.color-hex{
+    color: #c6c6d8;
+}
+
+input[type="text"]:focus {
+    border-color: #8b5cf6;
+}
+
+/* ── Color pickers ── */
+.color-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 0.2rem;
+}
+
+.color-field {
+    background: #111113;
+    border: 0.5px solid #2e2e38;
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.color-field:hover {
+    border-color: #8b5cf6;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 6px;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 5px;
+}
+
+.color-hex {
+    font-size: 13px;
+    color: #55556a;
+    font-family: monospace;
+    letter-spacing: 0.04em;
+}
+
+/* ── Generate button ── */
+.btn {
+    width: 100%;
+    margin-top: 1.6rem;
+    padding: 12px;
+    background: #8b5cf6;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.btn:hover {
+    background: #7c3aed;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ── QR result section ── */
+.qr-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid #2e2e38;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.qr-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #b6b6bf;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+}
+
+.qr-box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 12px;
+    display: inline-flex;
+}
+
+.qr-box img {
+    display: block;
+    width: 160px;
+    height: 160px;
+    image-rendering: pixelated;
+}
+
+/* ── Download button ── */
+.download-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 0.5px solid #2e2e38;
+    border-radius: 10px;
+    color: #a78bfa;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.download-btn:hover {
+    border-color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.08);
+}
+
+.download-btn svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
 }
